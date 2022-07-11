@@ -13,10 +13,9 @@ def receive_telemetry():
 
     while True:
         data, addr = sock.recvfrom(2048)
-        print(f'Received {data} from {addr}')
 
-        m_header = unpack('<HBBBBQfIBB', data[0:24])
-        packet_value = m_header[4]
+        header = unpack('<HBBBBQfIBB', data[0:24])
+        packet_value = header[4]
 
         if packet_value == 0:
             # Motion Data
