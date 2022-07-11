@@ -1,11 +1,10 @@
 import socket
-import struct
-from struct import pack, unpack
+from struct import unpack
 
 
 def receive_telemetry():
     UDP_IP = '127.0.0.1'
-    UDP_PORT = 20777
+    UDP_PORT = 42069
 
     sock = socket.socket(socket.AF_INET,
                          socket.SOCK_DGRAM)
@@ -14,6 +13,7 @@ def receive_telemetry():
 
     while True:
         data, addr = sock.recvfrom(2048)
+        print(f'Received {data} from {addr}')
 
         m_header = unpack('<HBBBBQfIBB', data[0:24])
         packet_value = m_header[4]
