@@ -8,6 +8,7 @@ I still appreciate any feedback and suggestions for improvements.
 ```shell
 git clone https://github.com/lassewolpmann/F1-22_Telemetry
 cd F1-22_Telemetry/
+pip install -r requirements.txt
 mkdir cache/
 ```
 ### F1 22 Settings
