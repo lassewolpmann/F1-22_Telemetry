@@ -11,7 +11,7 @@ class PacketHeader:
         self.packet_version = self.header_data[3]
         self.packet_id = self.header_data[4]
         self.session_uid = self.header_data[5]
-        self.session_time = self.header_data[6]
+        self.session_timestamp = self.header_data[6]
         self.frame_id = self.header_data[7]
         self.player_car_index = self.header_data[8]
         self.secondary_player_car_index = self.header_data[9]

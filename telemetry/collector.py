@@ -1,5 +1,7 @@
 from telemetry.packets import session_data, lap_data, event_data, header, car_telemetry
 import socket
+import json
+import datetime
 
 
 def receive_data():
@@ -12,8 +14,9 @@ def receive_data():
     telemetry = {
         'laps': {},
         'track_name': None,
-        'session_type': None
+        'session_name': None
     }
+
     lap_data_received = False
     telemetry_data_received = False
 
@@ -30,7 +33,7 @@ def receive_data():
             # Session Data
             track_length = session_data.SessionData(data).track_length
             track_name = session_data.SessionData(data).track_name
-            session_type = session_data.SessionData(data).session_type
+            session_name = session_data.SessionData(data).session_name
 
         elif packet_id == 2:
             # Lap Data
@@ -123,9 +126,15 @@ def receive_data():
             telemetry['laps'][lap_key]['lap_completed'] = False
 
     telemetry['track_name'] = track_name
-    telemetry['session_type'] = session_type
+    telemetry['session_name'] = session_name
+
+    # Write the telemetry data to JSON file for later use
+    date = datetime.datetime.now()
+    date_string = f'{date.year}.{date.month}.{date.day}-{date.hour}-{date.minute}-{date.second}'
+    file_name = f'{track_name}-{session_name}-{date_string}.json'
+    with open(f'./stored_telemetry/{file_name}', 'w') as outfile:
+        json.dump(telemetry, outfile, indent=4)
 
     return telemetry
 
-    # with open('telemetry.json', 'w') as outfile:
-    #     json.dump(telemetry, outfile, indent=4)
+
