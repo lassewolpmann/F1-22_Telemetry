@@ -9,7 +9,6 @@ I still appreciate any feedback and suggestions for improvements.
 git clone https://github.com/lassewolpmann/F1-22_Telemetry
 cd F1-22_Telemetry/
 pip install -r requirements.txt
-mkdir cache/
 ```
 ### F1 22 Settings
 Find the Telemetry Settings and make sure the settings are as following
