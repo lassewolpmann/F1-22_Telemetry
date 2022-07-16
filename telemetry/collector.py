@@ -130,8 +130,8 @@ def receive_data():
 
     # Write the telemetry data to JSON file for later use
     date = datetime.datetime.now()
-    date_string = f'{date.year}.{date.month}.{date.day}-{date.hour}-{date.minute}-{date.second}'
-    file_name = f'{track_name}-{session_name}-{date_string}.json'
+    date_string = f'{date.year}.{date.month}.{date.day} - {date.hour}.{date.minute}.{date.second}'
+    file_name = f'{track_name} {session_name} {date_string}.json'
     with open(f'./stored_telemetry/{file_name}', 'w') as outfile:
         json.dump(telemetry, outfile, indent=4)
 
